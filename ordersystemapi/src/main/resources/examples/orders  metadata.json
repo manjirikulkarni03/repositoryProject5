@@ -1,0 +1,14 @@
+[
+	{
+		  	"OrderID": "O1001",
+  			"ProductID": "P1001",
+  			"OrderDate": "20 Jan,2020",
+  			"ShippedDate": "25 Jan,2020",
+  			"Price": "2000",
+  			"QtyOrder": 1,
+  			"Status": "Waiting",
+  			"CustID": "C1001"
+	}
+	
+]
+

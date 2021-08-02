@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:db="http://www.mulesoft.org/schema/mule/db"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/current/mule-db.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<flow name="getAllOrderFlow" doc:id="9de46f27-4c67-402a-a838-4fffd876eb68" >
+		<db:select doc:name="Select" doc:id="7e0a52af-9f1f-42d1-bb3b-59fd62049710" config-ref="Database_Config">
+			<db:sql ><![CDATA[select * from orders]]></db:sql>
+		</db:select>
+		<ee:transform doc:name="Transform Message" doc:id="c1eb5f47-a422-4756-bd22-5cea1815637d" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+payload map ( payload01 , indexOfPayload01 ) -> {
+	OrderID: payload01.Oid,
+	ProductID: payload01.Pid default "",
+	OrderDate: payload01.OrderDate as String {format: "dd/MMM/YYYY"},
+	ShippedDate: payload01.shippedDate as String {format: "dd/MMM/YYYY"},
+	Price: payload01.orderprice as String default "",
+	QtyOrder: payload01.quantityordered default 0,
+	Status: payload01.ordStatus default "",
+	CustID: payload01.Cid default ""
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+	<flow name="getOrdeByIDFlow" doc:id="22a7f5c2-6d20-4da2-94af-8ce158e3682d" >
+		<db:query-single doc:name="Query single" doc:id="bf3ec13f-7bd1-426e-99bf-c7287f2e6569" config-ref="Database_Config">
+			<db:sql ><![CDATA[select * from orders where Oid = :id]]></db:sql>
+			<db:input-parameters ><![CDATA[#[{
+	id: vars.Id
+}]]]></db:input-parameters>
+		</db:query-single>
+		<ee:transform doc:name="Transform Message" doc:id="e1f1a519-8544-48f8-bb3d-876e458c3c7f" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+[{
+	OrderID: payload.Oid,
+	ProductID: payload.Pid default "",
+	OrderDate: payload.OrderDate as String {format: "dd/MMM/YYYY"},
+	ShippedDate: payload.shippedDate as String {format: "dd/MMM/YYYY"},
+	Price: payload.orderprice as String default "",
+	QtyOrder: payload.quantityordered default 0,
+	Status: payload.ordStatus default "",
+	CustID: payload.Cid default ""
+}]]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+</mule>

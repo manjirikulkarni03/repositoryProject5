@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<types:mule xmlns:types="http://www.mulesoft.org/schema/mule/types">
+  <types:catalog>
+    <types:type name="ord" format="json">
+      <types:shape format="weave" example="examples/orders  metadata.json"><![CDATA[%dw 2.0
+
+type ord = Array<{|  OrderID: String,   ProductID: String,   OrderDate: String,   ShippedDate: String,   Price: String,   QtyOrder: Number {"typeId": "int"},   Status: String,   CustID: String|}> {"example": "[{\\\"OrderID\\\":\\\"O1001\\\",\\\"ProductID\\\":\\\"P1001\\\",\\\"OrderDate\\\":\\\"20 Jan,2020\\\",\\\"ShippedDate\\\":\\\"25 Jan,2020\\\",\\\"Price\\\":\\\"2000\\\",\\\"QtyOrder\\\":1,\\\"Status\\\":\\\"Waiting\\\",\\\"CustID\\\":\\\"C1001\\\"}]"}
+
+]]></types:shape>
+    </types:type>
+  </types:catalog>
+  <types:enrichment select="#c1eb5f47-a422-4756-bd22-5cea1815637d">
+    <types:processor-declaration>
+      <types:output-event>
+        <types:message>
+          <types:payload type="ord"/>
+        </types:message>
+      </types:output-event>
+    </types:processor-declaration>
+  </types:enrichment>
+  <types:enrichment select="#e1f1a519-8544-48f8-bb3d-876e458c3c7f">
+    <types:processor-declaration>
+      <types:output-event>
+        <types:message>
+          <types:payload type="ord"/>
+        </types:message>
+      </types:output-event>
+    </types:processor-declaration>
+  </types:enrichment>
+</types:mule>
