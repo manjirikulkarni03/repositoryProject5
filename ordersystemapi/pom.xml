@@ -50,9 +50,35 @@
 					<classifier>mule-application</classifier>
 				</configuration>
 			</plugin>
+			<plugin>
+            <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
+                <version>1.6.6</version>
+                 <extensions>true</extensions>
+                <configuration>
+                    <serverId>nexus</serverId>
+                    <nexusUrl>http://localhost:8091/nexus/</nexusUrl>
+                    <skipStaging>true</skipStaging>
+                </configuration>
+                <executions>
+                       <execution>
+                         <id>default-deploy</id>
+                         <phase>deploy</phase>
+                         <goals>
+                           <goal>deploy</goal>
+                         </goals>
+                       </execution>
+                </executions>   
+            </plugin>
 		</plugins>
 	</build>
-
+    <distributionManagement>
+        <snapshotRepository>
+              <id>orderRepo</id>
+              <name>orderRepo</name>
+              <url>http://localhost:8091/repository/ordersRepo/</url>
+        </snapshotRepository>
+     </distributionManagement>
 	<dependencies>
 		<dependency>
 			<groupId>4c12cba8-a57e-4e94-85a0-a7ae98c5dc5a</groupId>
