@@ -74,9 +74,9 @@
 	</build>
     <distributionManagement>
         <snapshotRepository>
-              <id>orderRepo</id>
-              <name>orderRepo</name>
-              <url>http://localhost:8091/repository/ordersRepo/</url>
+              <id>orderRepository</id>
+              <name>orderRepository</name>
+              <url>http://localhost:8091/repository/orderRepository/</url>
         </snapshotRepository>
      </distributionManagement>
 	<dependencies>
