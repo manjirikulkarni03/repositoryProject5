@@ -41,12 +41,12 @@
 						<applicationName>ordersystapi</applicationName>
 						<objectStoreV2>true</objectStoreV2>
 					 </cloudHubDeployment>
-				    <sharedLibraries>
+				     <sharedLibraries>
 						<sharedLibrary>
 							<groupId>mysql</groupId>
 							<artifactId>mysql-connector-java</artifactId>
 						</sharedLibrary>
-					</sharedLibraries>
+					 </sharedLibraries>
 					<classifier>mule-application</classifier>
 				</configuration>
 			</plugin>
