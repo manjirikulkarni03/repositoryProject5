@@ -32,13 +32,13 @@
 				<configuration>
 				     <cloudHubDeployment>
 						<uri>https://anypoint.mulesoft.com/</uri>
-						<username>manjiri03</username>
-						<password>Manjiri@3</password>
+						<username>nayan_project</username>
+						<password>Nayan211</password>
 						<environment>Sandbox</environment>
 						<muleVersion>4.3.0</muleVersion>
 						<workers>1</workers>
 						<workerType>Micro</workerType>
-						<applicationName>dummy-Manjiri</applicationName>
+						<applicationName>ordersystemapi</applicationName>
 						<objectStoreV2>true</objectStoreV2>
 					 </cloudHubDeployment>
 					<sharedLibraries>
