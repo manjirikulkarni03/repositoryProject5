@@ -30,7 +30,6 @@
 				<version>${mule.maven.plugin.version}</version>
 				<extensions>true</extensions>
 				<configuration>
-				 <configuration>
 				     <cloudHubDeployment>
 						<uri>https://anypoint.mulesoft.com/</uri>
 						<username>nayan_project</username>
@@ -42,8 +41,7 @@
 						<applicationName>ordersystemapi</applicationName>
 						<objectStoreV2>true</objectStoreV2>
 					 </cloudHubDeployment>
-				 </configuration>	 
-					<sharedLibraries>
+				    <sharedLibraries>
 						<sharedLibrary>
 							<groupId>mysql</groupId>
 							<artifactId>mysql-connector-java</artifactId>
